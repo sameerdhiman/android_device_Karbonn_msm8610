@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014 Prashant Gahlot (proxthehacker@gmail.com)
+# Copyright (C) 2016 Sameer Dhiman
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,6 +40,20 @@ $(FIRMWARE_KEYMASTER_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_KEYMASTER_SYMLINKS)
+
+include $(CLEAR_VARS)
+
+FIRMWARE_WLAN_IMAGE := \
+    WCNSS_qcom_wlan_nv.bin
+
+FIRMWARE_WLAN_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/wlan/prima/,$(notdir $(FIRMWARE_WLAN_IMAGE)))
+$(FIRMWARE_WLAN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "WLAN Firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /persist/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WLAN_SYMLINKS)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 

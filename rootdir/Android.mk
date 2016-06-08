@@ -230,6 +230,6 @@ LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
 #Create symbolic link
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
-        ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
-        $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin;)
+#$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
+#        ln -sf /persist/WCNSS_qcom_wlan_nv.bin \
+#        $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin;)

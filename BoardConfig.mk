@@ -1,9 +1,25 @@
-USE_DEVICE_SPECIFIC_CAMERA := false
-USE_CAMERA_STUB := false
+#
+# Copyright (C) 2016 Sameer Dhiman
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 BUILD_TINY_ANDROID := false
 
 # inherit from the proprietary version
 -include vendor/Karbonn/msm8610/BoardConfigVendor.mk
+
+LOCAL_PATH := device/Karbonn/msm8610
 
 # +++++++++++++++++++
 # Motherboard Section
@@ -39,19 +55,12 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 # ++++++++++++++
 # Source
 # ******
-#TARGET_KERNEL_SOURCE := kernel/LNX.LA.3.5.1-09810-8x10.0
-#TARGET_KERNEL_CONFIG := kts1p_a444_wlan_defconfig
-
-# TARGET_KERNEL_SOURCE := kernel/OLD_AU_LINUX_ANDROID_LNX.LA.3.5.3_RB1.04.04.02.043.029
 TARGET_KERNEL_SOURCE := kernel/AU_LINUX_ANDROID_LNX.LA.3.5.3_RB1.04.04.02.043.029
 TARGET_KERNEL_CONFIG := kts1p_a444_wlan_defconfig
 
-# TARGET_KERNEL_SOURCE := kernel/LA.BF.1.1.2.c1-00400-8x10.0
-# TARGET_KERNEL_CONFIG := kts1p_a511_defconfig
-
 # Kernel Image
 # ************
-BOARD_CUSTOM_BOOTIMG_MK := device/Karbonn/msm8610/mkbootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_DTBTOOL_ARGS += --force-v2
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom androidboot.selinux=disabled user_debug=31 msm_rtb.filter=0x37
@@ -89,6 +98,10 @@ TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
+# Camera
+USE_CAMERA_STUB := false
+USE_DEVICE_SPECIFIC_CAMERA := true
+
 # FM radio
 # BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
@@ -107,7 +120,7 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 TARGET_QCOM_DISPLAY_VARIANT := caf-sdhi
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
-BOARD_EGL_CFG := device/Karbonn/msm8610/egl.cfg
+BOARD_EGL_CFG := $(LOCAL_PATH)/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -124,7 +137,7 @@ TARGET_PROVIDES_LIBLIGHT := false
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # Power
-TARGET_POWERHAL_VARIANT := qcom
+# TARGET_POWERHAL_VARIANT := qcom
 
 # ++++++++++++++++++
 # Multimedia Section
@@ -138,10 +151,6 @@ TARGET_QCOM_AUDIO_VARIANT := caf
 BOARD_USES_ALSA_AUDIO := true
 AUDIO_FEATURE_ENABLED_SSR := false
 AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
-
-# AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
-# AUDIO_FEATURE_DISABLED_SSR := true
-# AUDIO_FEATURE_DISABLED_DS1_DOLBY_DAP := true
 
 # WLAN
 WLAN_MODULES:
@@ -162,13 +171,6 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-# BOARD_HAS_QCOM_WLAN_SDK := true
-# TARGET_USES_WCNSS_CTRL := true
-# TARGET_PROVIDES_WCNSS_QMI := true
-# TARGET_USES_QCOM_WCNSS_QMI := true
-# WIFI_DRIVER_FW_PATH_AP := "ap"
-# WIFI_DRIVER_FW_PATH_STA := "sta"
-
 # Vold
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
@@ -186,8 +188,8 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Choose recovery variants from cwm, cm, philz and twrp. For cwm comment below line
 RECOVERY_VARIANT := cm
 
-# TARGET_RECOVERY_FSTAB := device/Karbonn/msm8610/twrp.fstab
-# TARGET_RECOVERY_INITRC := device/Karbonn/msm8610/twrp-init.rc
+# TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/twrp/twrp.fstab
+# TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/twrp/twrp-init.rc
 
 # CM Recovery
 # ***********
@@ -199,11 +201,12 @@ RECOVERY_VARIANT := cm
 # BOARD_RECOVERY_SWIPE := true
 # TARGET_COMMON_NAME := Titanium S1 Plus
 # BOARD_USE_MTK_LAYOUT := false
-## BOARD_MTK_BOOT_LABEL := "/bootimg"
 # PHILZ_TOUCH_RECOVERY := true
 # RECOVERY_TOUCH_DEBUG := false
 # BOARD_USE_NTFS_3G := false
 # BRIGHTNESS_SYS_FILE := "/sys/class/leds/lcd-backlight/brightness"
+# -----------------------------------------------------------------
+## BOARD_MTK_BOOT_LABEL := "/bootimg"
 
 # TWRP Recovery
 # *************
@@ -218,6 +221,8 @@ RECOVERY_VARIANT := cm
 # TW_DEFAULT_EXTERNAL_STORAGE := true
 # TWHAVE_SELINUX := true
 
+# TWRP Not Required
+# -----------------
 # TW_INTERNAL_STORAGE_PATH := "/sdcard0"
 # TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard0"
 # TW_EXTERNAL_STORAGE_PATH := "/sdcard1"

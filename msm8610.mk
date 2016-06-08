@@ -18,7 +18,8 @@ DEVICE_PACKAGE_OVERLAYS += device/Karbonn/msm8610/overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
-$(call inherit-product-if-exists, vendor/Karbonn/msm8610/msm8610-vendor.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# $(call inherit-product-if-exists, vendor/Karbonn/msm8610/msm8610-vendor.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -120,8 +121,8 @@ PRODUCT_PACKAGES += \
 #    gps.default
 
 # Sensors
-PRODUCT_PACKAGES += \
-    sensors.msm8610
+# PRODUCT_PACKAGES += \
+#    sensors.msm8610
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -226,7 +227,7 @@ PRODUCT_PACKAGES += \
     init.qcom.uicc.sh \
     init.qcom.modem_links.sh \
     enable_swap.sh \
-#    init.qti.carrier.rc \
+    init.qti.carrier.rc \
     init.target.rc
 
 # Copy fstab
@@ -266,4 +267,4 @@ PRODUCT_BRAND := Karbonn
 PRODUCT_MODEL := Titanium S1 Plus
 PRODUCT_MANUFACTURER := Karbonn
 
-$(call inherit-product-if-exists, hardware/qcom/msm8x74/msm8x74.mk)
+# $(call inherit-product-if-exists, hardware/qcom/msm8x74/msm8x74.mk)
