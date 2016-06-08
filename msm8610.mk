@@ -19,7 +19,7 @@ DEVICE_PACKAGE_OVERLAYS += device/Karbonn/msm8610/overlay
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
-# $(call inherit-product-if-exists, vendor/Karbonn/msm8610/msm8610-vendor.mk)
+$(call inherit-product-if-exists, vendor/Karbonn/msm8610/msm8610-vendor.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -266,5 +266,3 @@ PRODUCT_DEVICE := msm8610
 PRODUCT_BRAND := Karbonn
 PRODUCT_MODEL := Titanium S1 Plus
 PRODUCT_MANUFACTURER := Karbonn
-
-# $(call inherit-product-if-exists, hardware/qcom/msm8x74/msm8x74.mk)
