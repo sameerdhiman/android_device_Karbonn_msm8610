@@ -41,11 +41,33 @@
             android:primary="true"
             android:emulated="true"
             android:removable="false"
+            android:allowMassStorage="true"
             android:mtpReserve="100" />
         <storage android:mountPoint="/storage/sdcard1"
             android:storageDescription="@string/storage_sd_card"
             android:primary="false"
             android:emulated="false"
             android:removable="true"
+            android:allowMassStorage="true"
+            android:maxFileSize="4096" />
+<!--
+        <storage android:mountPoint="/storage/uicc0"
+            android:storageDescription="@string/storage_uicc"
+            android:primary="false"
+            android:emulated="false"
+            android:removable="true"
             android:allowMassStorage="true" />
+        <storage android:mountPoint="/storage/uicc1"
+            android:storageDescription="@string/storage_uicc"
+            android:primary="false"
+            android:emulated="false"
+            android:removable="true"
+            android:allowMassStorage="false" />
+        <storage android:mountPoint="/storage/usbotg"
+            android:storageDescription="@string/storage_usb"
+            android:primary="false"
+            android:emulated="false"
+            android:removable="true"
+            android:allowMassStorage="false" />
+-->
 </StorageList>
