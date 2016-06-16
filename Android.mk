@@ -58,14 +58,14 @@ ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WLAN_SYMLINKS)
 include $(CLEAR_VARS)
 
 QCRIL_DB_LINK := \
-    qcril.db
+    qcril.db.link
 
 QCRIL_DB_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/Default/data/misc/radio/,$(notdir $(QCRIL_DB_LINK)))
 $(QCRIL_DB_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "QCRIL Database link: $@"
 	@mkdir -p $(dir $@)
 	# @rm -rf $@
-	$(hide) ln -sf /data/misc/radio/$(notdir $@) $@.link
+	$(hide) ln -sf /data/misc/radio/qcril.db $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(QCRIL_DB_SYMLINKS)
 
