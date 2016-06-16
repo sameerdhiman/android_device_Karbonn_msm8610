@@ -256,6 +256,36 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+ADDITIONAL_BUILD_PROPERTIES += \
+    ro.com.android.dataroaming=true \
+    ro.com.android.dateformat=DD/MM/YYYY \
+    ro.carrier=unknown \
+    ro.vendor.extension_library=/vendor/lib/libqc-opt.so \
+    persist.radio.apm_sim_not_pwdn=1 \
+    ro.freecomm.TIME_12_24=12 \
+    ro.freecomm.date=true \
+    persist.sys.logkit.ctrlcode=1 \
+    persist.sys.language=EN \
+    persist.sys.country=US \
+    persist.sys.timezone=Asia/Calcutta \
+    persist.copy.finished=1 \
+    persist.sys.dalvik.vm.lib=libdvm.so \
+    net.bt.name=Android \
+    dalvik.vm.stack-trace-file=/data/anr/traces.txt \
+    ro.qc.sdk.izat.premium_enabled=1 \
+    ro.qc.sdk.izat.service_mask=0x5 \
+    persist.gps.qc_nlp_in_use=1 \
+    persist.loc.nlp_name=com.qualcomm.services.location \
+    ro.gps.agps_provider=1 \
+    persist.radio.calls.on.ims=true \
+    persist.radio.jbims=1 \
+    persist.radio.csvt.enabled=true \
+    persist.radio.VT_ENABLE=1 \
+    persist.radio.VT_HYBRID_ENABLE=1 \
+    persist.radio.custom_ecc=1 \
+    persist.radio.rat_on=combine \
+    persist.radio.mt_sms_ack=20
+
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
