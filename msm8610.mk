@@ -257,11 +257,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 ADDITIONAL_BUILD_PROPERTIES += \
+    ro.com.android.mobiledata=true \
     ro.com.android.dataroaming=true \
     ro.com.android.dateformat=DD/MM/YYYY \
     ro.carrier=unknown \
     ro.vendor.extension_library=/vendor/lib/libqc-opt.so \
-    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.apm_sim_not_pwdn=0 \
     ro.freecomm.TIME_12_24=12 \
     ro.freecomm.date=true \
     persist.sys.logkit.ctrlcode=1 \
@@ -284,7 +285,9 @@ ADDITIONAL_BUILD_PROPERTIES += \
     persist.radio.VT_HYBRID_ENABLE=1 \
     persist.radio.custom_ecc=1 \
     persist.radio.rat_on=combine \
-    persist.radio.mt_sms_ack=20
+    persist.radio.mt_sms_ack=20 \
+    persist.env.c.phone.matchnum=10 \
+    persist.radio.restore_mode_pref=1
 
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
