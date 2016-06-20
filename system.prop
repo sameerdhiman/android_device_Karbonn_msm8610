@@ -1,7 +1,8 @@
 #
 # system.prop for msm8610
 #
-
+# Telephony
+# *********
 # Use reference RIL for initial bringup
 #rild.libpath=/system/lib/libreference-ril.so
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
@@ -172,18 +173,21 @@ persist.radio.oem_socket = false
 #Set read only default composition for USB
 ro.sys.usb.default.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
 
-#ro.phicomm.cbb.showabout=false
+ro.phicomm.cbb.showabout=false
 persist.env.pw.reboot.enable=true
+
 #added by yingkang.peng for vedio call
-#ro.feixun.csvt.enabled=false 
-#persist.feixun.add.account=true
+ro.feixun.csvt.enabled=false 
+persist.feixun.add.account=true
+
 #add by chao.wang for theme change
-#ro.freecomm.theme.switch=false
+ro.freecomm.theme.switch=false
 
 #auto async contacts
 persist.env.contacts.autosync=true
 #
 # load gt9xx TP driver as kernel module
-#ro.gt9xx_driver=1
+ro.gt9xx_driver=1
+
 #added by chenmengmeng for CWJA-33 default date format mistake
-#ro.freecomm.date=true
+ro.freecomm.date=true
