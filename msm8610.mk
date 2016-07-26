@@ -116,14 +116,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8610
 
-# GPS
-# PRODUCT_PACKAGES += \
-#    gps.default
-
-# Sensors
-# PRODUCT_PACKAGES += \
-#    sensors.msm8610
-
 # Charger
 PRODUCT_PACKAGES += \
     charger \
@@ -163,6 +155,13 @@ PRODUCT_PACKAGES += \
     qrngd \
     qrngp
 
+# GPS
+PRODUCT_PACKAGES += \
+    gps.default \
+    libloc_core \
+    libloc_eng \
+    libgps.utils
+
 # Wifi
 PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
@@ -183,7 +182,6 @@ PRODUCT_COPY_FILES += \
     hardware/broadcom/wlan/bcmdhd/config/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
     device/Karbonn/msm8610/prebuilt/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     device/Karbonn/msm8610/prebuilt/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    device/Karbonn/msm8610/prebuilt/gps.default.so:system/lib/hw/gps.default.so \
     device/Karbonn/msm8610/prebuilt/sensors.msm8610.so:system/lib/hw/sensors.msm8610.so
 
 PRODUCT_PACKAGES += \
