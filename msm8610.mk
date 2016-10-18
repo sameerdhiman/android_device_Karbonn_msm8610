@@ -294,7 +294,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
 # << Define Additional Build Properties >>
-ADDITIONAL_BUILD_PROPERTIES += \
+# ADDITIONAL_BUILD_PROPERTIES += \
     ro.com.android.mobiledata=true \
     ro.com.android.dataroaming=true \
     ro.com.android.dateformat=DD/MM/YYYY \
