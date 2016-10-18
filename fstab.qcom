@@ -6,15 +6,10 @@
 # Currently we dont have e2fsck compiled. So fs check would failed.
 
 #<src>                                                <mnt_point>  <type>  <mnt_flags and options>                     <fs_mgr_flags>
-/dev/block/platform/msm_sdcc.1/by-name/system         /system      ext4    rw,barrier=1                                wait
+/dev/block/platform/msm_sdcc.1/by-name/system         /system      ext4    ro,barrier=1                                wait
 /dev/block/platform/msm_sdcc.1/by-name/userdata       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer
-
-# Vold
-/devices/msm_sdcc.1/mmc_host	auto	vfat	defaults	wait,voldmanaged=sdcard0:21
-/devices/msm_sdcc.2/mmc_host	auto	vfat	defaults	wait,voldmanaged=sdcard1:auto
-/devices/platform/msm_hsusb 	auto	vfat	defaults	wait,voldmanaged=usbotg:auto
-
-#/devices/f9926000.spi/spi_master/spi4            /storage/uicc0    vfat    nosuid,nodev                                wait,voldmanaged=uicc0:auto
-#/devices/f9926000.spi/spi_master/spi4            /storage/uicc1    vfat    nosuid,nodev                                wait,voldmanaged=uicc1:auto
+/devices/msm_sdcc.2/mmc_host                     /storage/sdcard1  vfat    nosuid,nodev                                wait,voldmanaged=sdcard1:auto
+/dev/block/zram0 none swap defaults zramsize=536870912
+/dev/block/bootdevice/by-name/config                  /frp        emmc    defaults             defaults
 #/dev/block/mmcblk0p11         /system      ext4    ro,barrier=1                                wait
 #/dev/block/mmcblk0p12       /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc      wait,check,encryptable=footer
