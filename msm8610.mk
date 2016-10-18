@@ -21,18 +21,24 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product-if-exists, vendor/Karbonn/msm8610/msm8610-vendor.mk)
 
-# Ant
+# << Ant >>
 PRODUCT_PACKAGES += \
     AntHalService \
-    libantradio
+    libantradio \
+    antradio_app
 
-# Audio
+# << Audio HAL >>
 PRODUCT_PACKAGES += \
-    audiod \
-    audio_policy.msm8610 \
     audio.primary.msm8610 \
-    audio.r_submix.default \
+    audio.primary.default \
+    audio.a2dp.default \
     audio.usb.default \
+    audio.r_submix.default \
+    audio_policy.msm8610 \
+    audio_policy.default
+
+# << MM-Audio and HiQ Audio Resampler >>
+PRODUCT_PACKAGES += \
     libaudio-resampler \
     libOmxAacEnc \
     libOmxAmrEnc \
@@ -62,7 +68,6 @@ PRODUCT_PACKAGES += \
 # Bluetooth
 PRODUCT_PACKAGES += \
     bluetooth.default \
-    audio.a2dp.default \
     libbt-hci \
     libbt-utils \
     sdptool
@@ -106,8 +111,6 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVdecHevc \
     qcmediaplayer
-
-PRODUCT_BOOT_JARS += qcmediaplayer
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -164,6 +167,7 @@ PRODUCT_PACKAGES += \
     FM2 \
     FMRecord \
     libqcomfm_jni \
+    libfmjni \
     qcom.fmradio \
     qcom.fmradio.xml
 
@@ -187,19 +191,6 @@ PRODUCT_PACKAGES += \
     hostapd_cli \
     wpa_supplicant \
     libwpa_client
-
-PRODUCT_COPY_FILES += \
-    external/wpa_supplicant_8/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
-    external/wpa_supplicant_8/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny \
-    external/wpa_supplicant_8/hostapd/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
-    device/Karbonn/msm8610/prebuilt/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    device/Karbonn/msm8610/prebuilt/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/Karbonn/msm8610/prebuilt/wpa_supplicant_ath6kl.conf:system/etc/wifi/wpa_supplicant_ath6kl.conf \
-    device/Karbonn/msm8610/prebuilt/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    device/Karbonn/msm8610/prebuilt/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    device/Karbonn/msm8610/prebuilt/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    device/Karbonn/msm8610/prebuilt/gps.default.so:system/lib/hw/gps.default.so \
-    device/Karbonn/msm8610/prebuilt/sensors.msm8610.so:system/lib/hw/sensors.msm8610.so
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -249,10 +240,27 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/fstab.qcom:root/fstab.qcom
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240
+# << Copy Pre-built Files >>
+PRODUCT_COPY_FILES += \
+    device/Karbonn/msm8610/media/media_profiles_8610.xml:system/etc/media_profiles.xml \
+    device/Karbonn/msm8610/media/media_codecs_8610.xml:system/etc/media_codecs.xml \
+    device/Karbonn/msm8610/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    device/Karbonn/msm8610/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    device/Karbonn/msm8610/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/Karbonn/msm8610/prebuilt/hostapd.accept:system/etc/hostapd/hostapd.accept \
+    device/Karbonn/msm8610/prebuilt/hostapd.deny:system/etc/hostapd/hostapd.deny \
+    device/Karbonn/msm8610/prebuilt/hostapd.conf:system/etc/hostapd/hostapd_default.conf \
+    device/Karbonn/msm8610/prebuilt/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+    device/Karbonn/msm8610/prebuilt/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/Karbonn/msm8610/prebuilt/wpa_supplicant_ath6kl.conf:system/etc/wifi/wpa_supplicant_ath6kl.conf \
+    device/Karbonn/msm8610/prebuilt/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+    device/Karbonn/msm8610/prebuilt/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    device/Karbonn/msm8610/prebuilt/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/Karbonn/msm8610/prebuilt/whitelist_appops.xml:system/etc/whitelist_appops.xml \
+    device/Karbonn/msm8610/prebuilt/hw/gps.default.so:system/lib/hw/gps.default.so \
+    device/Karbonn/msm8610/prebuilt/hw/sensors.msm8610.so:system/lib/hw/sensors.msm8610.so
 
-# Permissions
+# << Copy Permissions >>
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
@@ -271,6 +279,21 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
+# << Boot Jars >>
+PRODUCT_BOOT_JARS += qcmediaplayer \
+    qcom.fmradio
+
+# << Override Product Properties >>
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=240
+
+# << Override Product Default Properties >>
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.strict_op_enable=false \
+    persist.sys.whitelist=/system/etc/whitelist_appops.xml \
+    camera2.portability.force_api=1
+
+# << Define Additional Build Properties >>
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.com.android.mobiledata=true \
     ro.com.android.dataroaming=true \

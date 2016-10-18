@@ -17,6 +17,7 @@
 BUILD_TINY_ANDROID := false
 
 ANDROID_COMPILE_WITH_JACK := false
+USE_CLANG_PLATFORM_BUILD := true
 
 # inherit from the proprietary version
 -include vendor/Karbonn/msm8610/BoardConfigVendor.mk
@@ -50,6 +51,7 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 # Memory Section
 # ++++++++++++++
 TARGET_ARCH_LOWMEM := true
+MALLOC_IMPL := dlmalloc
 
 # Kernel Section
 # ++++++++++++++
@@ -78,6 +80,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 838860800
 # BOARD_USERDATAIMAGE_PARTITION_SIZE := 1224719872
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 1191165440
 BOARD_CACHEIMAGE_PARTITION_SIZE := 33554432
+# BOARD_PERSISTIMAGE_PARTITION_SIZE := 
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # << Partition Filesystem >>
@@ -105,17 +108,20 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 USE_CAMERA_STUB := true
 
 # << FM radio >>
-# BOARD_HAVE_QCOM_FM := true
-# TARGET_QCOM_NO_FM_FIRMWARE := true
+BOARD_HAVE_QCOM_FM := true
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # << Radio Iinterface Layer >>
 TARGET_RIL_VARIANT := caf
 # SIM_COUNT := 2
+COMMON_GLOBAL_CFLAGS += -DUSE_RIL_VERSION_10
+COMMON_GLOBAL_CPPFLAGS += -DUSE_RIL_VERSION_10
 
 # << Audio >>
 TARGET_QCOM_AUDIO_VARIANT := caf-msm8974
 BOARD_USES_ALSA_AUDIO := true
 TARGET_USES_QCOM_MM_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # << Media AV >>
 TARGET_QCOM_MEDIA_VARIANT := caf-msm8974
@@ -139,7 +145,7 @@ TARGET_PROVIDES_LIBLIGHT := false
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # << Power >>
-# TARGET_POWERHAL_VARIANT := qcom
+TARGET_POWERHAL_VARIANT := qcom
 
 # << WiFi Driver >>
 WLAN_MODULES:
