@@ -1,0 +1,3 @@
+add_lunch_combo msm8610-eng
+add_lunch_combo msm8610-userdebug
+add_lunch_combo msm8610-user
