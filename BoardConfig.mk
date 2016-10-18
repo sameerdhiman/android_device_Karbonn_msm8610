@@ -17,7 +17,7 @@
 BUILD_TINY_ANDROID := false
 
 ANDROID_COMPILE_WITH_JACK := false
-USE_CLANG_PLATFORM_BUILD := true
+# USE_CLANG_PLATFORM_BUILD := true
 
 # inherit from the proprietary version
 -include vendor/Karbonn/msm8610/BoardConfigVendor.mk
