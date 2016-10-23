@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/kts1p.mk
+	$(LOCAL_DIR)/c230wja.mk
