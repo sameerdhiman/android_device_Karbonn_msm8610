@@ -1,8 +1,7 @@
 #
 # system.prop for msm8610
 #
-# Telephony
-# *********
+
 # Use reference RIL for initial bringup
 #rild.libpath=/system/lib/libreference-ril.so
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
@@ -20,9 +19,9 @@ ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 persist.radio.msgtunnel.start=false
 persist.radio.atfwd.start=false
-# Start in wcdma gsm mode
+# Start in WCDMA/GSM mode
 ro.telephony.default_network=3,1
-# set the phone as dsds mode
+# Set the phone to dsds mode (Dual-Sim Dual-Standby)
 persist.radio.multisim.config=dsds
 # set the network mode list
 persist.radio.network_feature=12
@@ -43,7 +42,7 @@ debug.hwc.dynThreshold=1.5
 dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 
-ro.hdmi.enable=false
+ro.hdmi.enable=true
 
 #system props for the MM modules
 
@@ -92,12 +91,12 @@ ro.opengles.version=196608
 
 #
 # System props for telephony
-# System prop to turn off CdmaLTEPhone always
+# System prop to turn on/off CdmaLTEPhone (Default: 1)
 telephony.lteOnCdmaDevice=0
 
 # simulate sdcard on /data/media
 #
-persist.fuse_sdcard=false
+persist.fuse_sdcard=true
 
 #
 #snapdragon value add features
@@ -166,28 +165,5 @@ ro.config.pppoe_enable=1
 #additional max allowed background services on bootup
 persist.added_boot_bgservices=4
 
-#add by zhongken.xie for nv read and write start:
-persist.radio.oem_socket = false
-#add by zhongken.xie for nv read and write end
-
 #Set read only default composition for USB
 ro.sys.usb.default.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
-
-ro.phicomm.cbb.showabout=false
-persist.env.pw.reboot.enable=true
-
-#added by yingkang.peng for vedio call
-ro.feixun.csvt.enabled=false 
-persist.feixun.add.account=true
-
-#add by chao.wang for theme change
-ro.freecomm.theme.switch=false
-
-#auto async contacts
-persist.env.contacts.autosync=true
-#
-# load gt9xx TP driver as kernel module
-ro.gt9xx_driver=1
-
-#added by chenmengmeng for CWJA-33 default date format mistake
-ro.freecomm.date=true

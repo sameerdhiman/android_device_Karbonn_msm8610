@@ -29,20 +29,6 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-FIRMWARE_WLAN_IMAGE := \
-    WCNSS_qcom_wlan_nv.bin
-
-FIRMWARE_WLAN_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/wlan/prima/,$(notdir $(FIRMWARE_WLAN_IMAGE)))
-$(FIRMWARE_WLAN_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "WLAN Firmware link: $@"
-	@mkdir -p $(dir $@)
-	@rm -rf $@
-	$(hide) ln -sf /persist/$(notdir $@) $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_WLAN_SYMLINKS)
-
-include $(CLEAR_VARS)
-
 QCRIL_DB_LINK := \
     qcril.db.link
 
